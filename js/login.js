@@ -56,3 +56,25 @@ $(document).ready(function () {
     });
   });
 });
+
+// Register function
+$(document).ready(function () {
+  $("#registerButton").click(function () {
+    var username = $("#registerUsername").val();
+    var password = $("#registerPassword").val();
+
+    $.ajax({
+      url: "http://localhost:8003/api/v1/inventory/register", 
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({ username: username, password: password }),
+      success: function (response) {
+        toastr.success("Registration successful. Please log in.");
+        // Optionally redirect to the login page or automatically log the user in
+      },
+      error: function (xhr, status, error) {
+        toastr.error("Registration failed: " + xhr.responseText || error);
+      },
+    });
+  });
+});
