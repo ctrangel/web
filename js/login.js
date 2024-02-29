@@ -36,19 +36,21 @@ $(document).ready(function () {
     var password = $("#loginPassword").val();
 
     $.ajax({
-      url: "https://inventory-b7qi.onrender.com/api/v1/inventory/login",
+      // url: "https://inventory-b7qi.onrender.com/api/v1/inventory/login",
+      url: "http://localhost:8003/api/v1/inventory/login",
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify({ username: username, password: password }),
       success: function (response) {
         localStorage.setItem("authToken", response.token);
         window.location.href = "/inventory.html";
+        toastr.success('Your bluetooth device is paried uh sucessfully');
       },
       error: function (xhr, status, error) {
         if (xhr.status == 404) {
-          alert("Login endpoint not found. Please check the URL.");
+          toastr.error("Login endpoint not found. Please check the URL.");
         } else {
-          alert("Login failed: " + xhr.responseText || error);
+          toastr.error("Login failed: " + xhr.responseText || error);
         }
       },
     });
