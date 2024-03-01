@@ -1,0 +1,35 @@
+todo list
+
+- Create another repository if you haven't called "web" for the front end
+Create a website that includes a main page that allows the end user to get to a page to view data, add data and modify data
+Create a way for each of the pages navigate between pages and back to home
+Create a page that allows the end user to input values into text boxes for the Add New Data Page
+Create a way to allow the end user to update values on another page
+
+
+    Create a way to be able to VIEW data from Web Application that talks to your end point in the cloud.
+        Acceptance Criteria: Go to URL in the web and view your data results
+    Create a way to be able to INSERT new data from Web Application into the database via the API EndPoint
+        Acceptance Criteria: When Add new data, you should receive a modal that says record has been saved, and you visit the view page to see the results
+    Create a way to be able to UPDATE existing data from the Web Application into the database via the API EndPoint
+        Acceptance Criteria:
+                    NEED to figure a way to CREATE a drop down list of values that populates all of the values of a unique fields (USE DISTINCT or GROUP BY)
+                    SELECT the field
+                    Then this will populate the text fields on the update table
+                Part II: Create a method that allows you to use the PUT to update the table with the new values
+                Go to the View Page to verify that the data results exist
+
+Provide your URL Information here:
+
+1. Provide GitHub URL for Web:
+
+2. Provide GitHub URL for API:
+
+3. Provide URL of your website
+
+4. Demo Product at the start of class on March 4th
+
+ALSO:
+
+- Fix toastr message on successful login
+- fix table asthetics
