@@ -82,12 +82,31 @@
               Not registered? <a href="#">Create an account</a>
             </p>
           </form>
-          <div id="loader" style="display: none;"></div>
-
+          <div id="loader" style="display: none"></div>
         </div>
       </div>
     </section>
     <script src="./js/setActiveNav.js"></script>
     <script src="./js/login.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const authToken = localStorage.getItem("authToken");
+        // Redirect to inventory.html if the user is already logged in
+        if (authToken) {
+          window.location.href = "/inventory.html";
+        }
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const redirected = localStorage.getItem("redirected");
+        if (redirected) {
+          toastr.error(
+            "Access DENIED! Please login to access the inventory page."
+          );
+          localStorage.removeItem("redirected"); // Clear the flag
+        }
+      });
+    </script>
   </body>
 </html>

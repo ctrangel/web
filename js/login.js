@@ -9,24 +9,13 @@ $(document).ready(function () {
   });
 });
 
-// Logout function
+// Logout function I still need to make an element for this one!!!!!
 function logout() {
   localStorage.removeItem("authToken");
   window.location.href = "/index.html";
 }
 
-// Check if the user is logged in
-document.addEventListener("DOMContentLoaded", function () {
-  // Check if we're on a page that requires authentication
-  const requiresAuth = ["/inventory.html", "/reports.html"]; // Add more protected routes as needed
-  const path = window.location.pathname;
 
-  if (requiresAuth.includes(path) && !localStorage.getItem("authToken")) {
-    // Inform the user and redirect
-    alert("Access Denied! Please login to access this page.");
-    window.location.href = "/index.html"; // Redirect to the login page
-  }
-});
 
 // Login function
 
@@ -38,18 +27,19 @@ $(document).ready(function () {
     $("#loader").show();
 
     $.ajax({
-      // url: "https://inventory-b7qi.onrender.com/api/v1/inventory/login",
-      url: "http://localhost:8003/api/v1/inventory/login",
+      url: "https://inventory-b7qi.onrender.com/api/v1/inventory/login",
+      //   url: "http://localhost:8003/api/v1/inventory/login",
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify({ username: username, password: password }),
       success: function (response) {
         toastr.success("Your bluetooth device is paired successfully");
         localStorage.setItem("authToken", response.token);
+        localStorage.setItem("username", username);
         // Delay redirect to allow toastr message to be seen
         setTimeout(function () {
           window.location.href = "/inventory.html";
-        }, 2000); 
+        }, 2000);
       },
       error: function (xhr, status, error) {
         if (xhr.status == 404) {
@@ -74,7 +64,8 @@ $(document).ready(function () {
     var password = $("#registerPassword").val();
 
     $.ajax({
-      url: "http://localhost:8003/api/v1/inventory/register",
+      //   url: "http://localhost:8003/api/v1/inventory/register",
+      url: "https://inventory-b7qi.onrender.com/api/v1/inventory/register",
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify({ username: username, password: password }),
@@ -91,3 +82,9 @@ $(document).ready(function () {
     });
   });
 });
+
+
+
+
+
+

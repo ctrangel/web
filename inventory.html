@@ -37,46 +37,46 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light sticky-top" id="nav-bar">
       <a class="navbar-brand" style="font-size: 3em" href="#">World of Jars</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto m" style="font-size: 1.5em" >
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="inventory.html">Inventory</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="reports.html">Reports</a>
-          </li>
-        </ul>
-      </div>
+      <button id="logout-btn" onclick="logout()">Logout</button>
     </nav>
-    <!-- Button Flow at the top header -->
-    <!-- <div class="container-fluid">
-      <div class="row">
-        <div class="home-button">
-          <button
-            class="btn btn-secondary"
-            onclick="window.location.href='inventoryAdd.html'"
-          >
-            Add Inventory
-          </button>
-        </div>
+    <section id="inventory-home-link">
+      <div id="welcomeMessage"></div>
+      <div class="links">
+        <a href="addData.html">Add Data</a>
+        <a href="viewData.html">View Data</a>
+        <a href="modifyData.html">Modify Data</a>
+        <a href="reports.html">Get Reports</a>
       </div>
-    </div> -->
+    </section>
+
+    <script src="./js/login.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const authToken = localStorage.getItem("authToken");
+        const username = localStorage.getItem("username");
+
+        // Redirect to index.html if not logged in (authToken is missing)
+        if (!authToken) {
+          localStorage.setItem("redirected", "true"); // Set a flag
+          window.location.href = "/index.html";
+          toastr.message(
+            " Access DENIED! Please login to access the inventory page"
+          );
+          return; // Stop further execution
+        }
+
+        // If logged in, display a personalized welcome message
+        if (username) {
+          document.getElementById(
+            "welcomeMessage"
+          ).innerHTML = `Hi, welcome ${username}!`;
+        } else {
+          // If the username is somehow missing, you can choose to still display a generic welcome,
+          // or consider re-fetching user details, or log the user out for inconsistency
+          document.getElementById("welcomeMessage").innerHTML = "Hi, welcome!";
+        }
+      });
+    </script>
   </body>
 </html>
