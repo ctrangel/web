@@ -33,7 +33,7 @@ $(document).ready(function () {
       contentType: "application/json",
       data: JSON.stringify({ username: username, password: password }),
       success: function (response) {
-        toastr.success("Your bluetooth device is paired successfully");
+        toastr.success("Your bluetooth device is paired uh... successfully");
         localStorage.setItem("authToken", response.token);
         localStorage.setItem("username", username);
         // Delay redirect to allow toastr message to be seen
@@ -43,7 +43,7 @@ $(document).ready(function () {
       },
       error: function (xhr, status, error) {
         if (xhr.status == 404) {
-          toastr.error("Login endpoint not found. Please check the URL.");
+          toastr.error("hmmm, I think perhaps the servers are down, womp womp.");
         } else if (xhr.status == 401) {
           toastr.error("username or password is incorrect. Please try again.");
         } else {
