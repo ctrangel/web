@@ -34,38 +34,80 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           return 3;
         }
+      };
+
+      let translateLocationBack = (locationId) => {
+        // Define your mapping from location IDs to names
+        const locationMap = {
+          1: "Small Jars Section",
+          2: "Medium Jars Section",
+          3: "Large Jars Section",
+          4: "Extra Small Jars Section",
+          5: "Extra Large Jars Section",
+          6: "Fancy Jars Display",
+          7: "Bulk Storage",
+          8: "Other",
+        };
+        return locationMap[locationId] || "Unknown Location";
+      }
+
+      let translateStatusBack = (statusId) => {
+        // Define your mapping from status IDs to names
+        const statusMap = {
+          1: "In Stock",
+          2: "Out of Stock",
+          3: "Other Status",
+        };
+        return statusMap[statusId] || "Unknown Status";
       }
 
       const formData = {
-        jarType: document.getElementById("jarTypeInput").value,
+        jartype: document.getElementById("jarTypeInput").value,
+        location_id: translateLocation(),
+        status_id: translateStatus(),
         quantity: parseInt(document.getElementById("quantityInput").value, 10),
-        locationName: translateLocation(),
-        status: translateStatus(),
       };
 
-      console.log(formData);
+      console.log(formData); // to check translation, it works!
 
-    //   fetch("/api/v1/inventory/", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(formData),
-    //   })
-    //     .then((response) => {
-    //       if (!response.ok) {
-    //         throw new Error("Network response was not ok");
-    //       }
-    //       return response.json();
-    //     })
-    //     .then((data) => {
-    //       console.log(data);
-    //       $("#successModal").modal("show");
-    //     })
-    //     .catch((error) => {
-    //       console.error("Error:", error);
-    //     });
-     });
+      fetch("http://localhost:8003/api/v1/inventory/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+
+          // Translate IDs back to names
+          const locationName = translateLocationBack(data.data.location_id);
+          const statusName = translateStatusBack(data.data.status_id);
+
+          // Construct a message with the jar details to display, using the translated names
+          let message = `
+    <p><strong>Jar Type:</strong> ${data.data.jartype}</p>
+    <p><strong>Location:</strong> ${locationName}</p>
+    <p><strong>Status:</strong> ${statusName}</p>
+    <p><strong>Quantity:</strong> ${data.data.quantity}</p>
+  `;
+
+          // Update the modal body with the jar details
+          document.querySelector("#successModal .modal-body").innerHTML =
+            message;
+
+          // Show the modal
+          $("#successModal").modal("show");
+        })
+
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
 });
-
-

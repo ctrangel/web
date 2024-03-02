@@ -287,6 +287,25 @@ body {
 
 /* for grid */
 
+#viewData-header-container {
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  margin: 20px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  color: #333;
+
+}
+
+#viewData-header {
+  font-size: 2em;
+  color: #333;
+  font-weight: bold;
+}
+
 #grid-container {
   margin: 20px;
 }
