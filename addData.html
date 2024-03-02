@@ -65,5 +65,65 @@
         </ul>
       </div>
     </nav>
+    <div class="container mt-5" id="add-new-jar-form">
+        <h2>Add New Jar Data</h2>
+        <form id="addJarForm">
+            <div class="form-group">
+                <label for="jarTypeInput">Jar Type</label>
+                <input type="text" class="form-control" id="jarTypeInput" name="jarType" required>
+            </div>
+            <div class="form-group">
+                <label for="quantityInput">Quantity</label>
+                <input type="number" class="form-control" id="quantityInput" name="quantity" required>
+            </div>
+            <div class="form-group">
+                <label for="locationNameInput">Location</label>
+                <select class="form-control" id="locationSelect" name="locationName" required>
+                    <option>Small Jars Section</option>
+                    <option>Medium Jars Section</option>
+                    <option>Large Jars Section</option>
+                    <option>Extra Small Jars Section</option>
+                    <option>Extra Large Jars Section</option>
+                    <option>Fancy Jars Display</option>
+                    <option>Bulk Storage</option>
+                    <option>Quick Pick Area</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="statusSelect">Status</label>
+                <select class="form-control" id="statusSelect" name="status">
+                    <option>In Stock</option>
+                    <option>Out of Stock</option>
+                    <option>Damaged</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Success</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Record has been saved successfully!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./js/addData.js"></script> <!-- Your custom script -->
   </body>
 </html>

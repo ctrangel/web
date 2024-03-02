@@ -322,3 +322,24 @@ body {
 }
 
 
+/* add data page */
+
+#add-new-jar-form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 20px;
+  text-align: center;
+
+}
+
+#add-new-jar-form h2 {
+  font-size: 2em;
+  color: #333;
+  font-weight: bold;
+}
+
+
