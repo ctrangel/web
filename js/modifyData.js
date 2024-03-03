@@ -100,7 +100,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       };
 
+      const selectedJartype = document.getElementById("jarTypeInput").value;
+      const itemId = jarTypeToIdMap.get(selectedJartype); 
+
       const formData = {
+        id: itemId,
         jartype: document.getElementById("jarTypeInput").value,
         location_id: translateLocation(),
         status_id: translateStatus(),
@@ -122,7 +126,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
           console.log("Update successful", data);
           // Trigger the modal to show success message
-          $("#successModal").modal("show");
+          $("#successModal").on("hidden.bs.modal", function () {
+            // This will be executed after the modal is closed
+            location.reload(); // Refreshes the page
+          });
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -130,24 +137,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+let jarTypeToIdMap = new Map(); // Create a mapping of jartype to id
+
 async function fetchAndPopulateJarTypes() {
   const endpoint =
     "https://inventory-b7qi.onrender.com/api/v1/inventory/complete-report";
   const data = await fetchData(endpoint);
-  const jarTypeSet = new Set(data.map((item) => item.jartype));
-
   const jarTypeSelect = document.getElementById("jarTypeInput");
-  jarTypeSet.forEach((jartype) => {
-    const option = new Option(jartype, jartype);
-    jarTypeSelect.add(option);
-  });
 
-  // Pre-select the first jartype and populate related fields
-  if (jarTypeSet.size > 0) {
-    jarTypeSelect.value = [...jarTypeSet][0];
-    populateFieldsBasedOnJarType(data, [...jarTypeSet][0]);
-  }
+  data.forEach((item) => {
+    // Store jartype to id mapping
+    jarTypeToIdMap.set(item.jartype, item.id);
+
+    // Check if this jartype is already in the dropdown to avoid duplicates
+    if (
+      !Array.from(jarTypeSelect.options).some(
+        (option) => option.text === item.jartype
+      )
+    ) {
+      const option = new Option(item.jartype, item.jartype); // Use jartype as both text and value
+      jarTypeSelect.add(option);
+    }
+  });
 }
+
+// Ensure this function is called when the document is ready
+document.addEventListener("DOMContentLoaded", fetchAndPopulateJarTypes);
+
 
 // Call the function to populate jar types on page load
 document.addEventListener("DOMContentLoaded", fetchAndPopulateJarTypes);
