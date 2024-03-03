@@ -126,10 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
           console.log("Update successful", data);
           // Trigger the modal to show success message
-          $("#successModal").on("hidden.bs.modal", function () {
-            // This will be executed after the modal is closed
-            location.reload(); // Refreshes the page
-          });
+          $("#successModal").modal("show");
         })
         .catch((error) => {
           console.error("Error:", error);
