@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       console.log(formData); // to check translation, it works!
 
-      fetch("http://localhost:8003/api/v1/inventory/", {
+      fetch("https://inventory-b7qi.onrender.com/api/v1/inventory/", { //https:localhost:8003/api/v1/inventory/ for local db
         method: "POST",
         headers: {
           "Content-Type": "application/json",

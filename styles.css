@@ -362,3 +362,49 @@ body {
 }
 
 
+/* modify data page */
+
+#modifyJarTable-container {
+  max-width: 1171px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 20px;
+  text-align: center;
+
+}
+
+#editJarForm {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+#editJarForm .form-group {
+  margin-bottom: 15px;
+}
+
+#editJarForm .form-control {
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+
+#editJarForm .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+#editJarForm .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
