@@ -31,5 +31,3 @@ Provide your URL Information here:
 
 ALSO:
 
-- Fix toastr message on successful login
-- fix table asthetics
