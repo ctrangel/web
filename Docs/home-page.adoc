@@ -1,0 +1,33 @@
+= Homepage Documentation for World of Jars
+
+== Overview
+
+The homepage serves as the central hub for the World of Jars inventory management system, designed to welcome users and provide quick navigation to key functionalities like adding, viewing, modifying data, and generating reports. This document details the structure and interactive elements of the homepage, including authentication checks and personalized user greetings.
+
+== Structure
+
+The homepage is built using HTML5, styled with CSS (via external stylesheets including Bootstrap for responsive design), and employs JavaScript and jQuery for dynamic behavior. Key external resources are loaded from CDNs to leverage popular libraries and frameworks such as Bootstrap, jQuery, and Toastr for notifications.
+
+=== Key Elements
+
+- *Navigation Bar*: A responsive navbar that includes the application's title and a logout button.
+- *Welcome Message*: Dynamically displays a greeting to the logged-in user or a generic welcome message.
+- *Links to Main Features*: Provides quick access to adding, viewing, modifying data, and generating reports.
+
+== JavaScript Functionality
+
+=== Automatic Redirection
+
+If a user accesses the homepage without being authenticated (no `authToken` present in local storage), they are automatically redirected to the login page, and a notification is displayed using Toastr.
+
+=== Personalized Welcome Message
+
+Upon successful login, the homepage greets the user by name, enhancing the user experience with a personalized touch. This is achieved by retrieving the username from local storage.
+
+=== Logout Mechanism
+
+The logout button clears the user's `authToken` from local storage and redirects them to the login page, effectively logging them out.
+
+== Security Considerations
+
+The homepage includes an initial security layer by redirecting unauthenticated users. However, comprehensive security requires backend validation of authentication tokens for all sensitive actions and data access.
