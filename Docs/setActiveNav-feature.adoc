@@ -1,0 +1,44 @@
+= setActiveNav Feature Documentation for World of Jars
+
+== Overview
+
+This JavaScript feature dynamically highlights the active navigation link in the World of Jars application based on the current page's URL. It enhances user navigation by visually indicating which section of the application they are currently viewing.
+
+== Implementation
+
+The script listens for the `DOMContentLoaded` event to ensure it runs after the full HTML document has been completely loaded. It then retrieves the current page's URL path and iterates over all navigation links in the document. For each link, it compares the link's `href` attribute with the current URL path. If a match is found, it adds an `active` class to the link's parent `<li>` element to highlight it. If there's no match, it removes the `active` class to ensure only the correct link is highlighted.
+
+=== Key Components
+
+- *Event Listener*: Listens for `DOMContentLoaded` to ensure the script runs after the page is fully loaded.
+- *URL Path Retrieval*: Uses `window.location.pathname` to get the current page's URL path.
+- *Navigation Links Selection*: Utilizes `document.querySelectorAll` to select all navigation link elements within the navbar.
+- *Class Manipulation*: Adds or removes the `active` class on the parent `<li>` element based on URL path matching.
+
+== Code Snippet
+
+[source,js]
+----
+document.addEventListener("DOMContentLoaded", function () {
+  var currentLocation = window.location.pathname;
+  var navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+  navLinks.forEach(function (link) {
+    var linkPath = link.getAttribute("href");
+
+    if (currentLocation.includes(linkPath)) {
+      link.parentElement.classList.add("active");
+    } else {
+      link.parentElement.classList.remove("active");
+    }
+  });
+});
+----
+
+== Usage
+
+To utilize this feature in your World of Jars application, include the JavaScript code in a `<script>` tag at the bottom of your HTML document or in an external JS file linked to your HTML document. This script is designed to work with a Bootstrap-style navigation bar, where navigation links are contained within `<li>` elements.
+
+== Compatibility
+
+This script is compatible with modern web browsers that support ES6 syntax and the `querySelectorAll` method. Ensure your application's target audience uses compatible browsers for an optimal user experience.
