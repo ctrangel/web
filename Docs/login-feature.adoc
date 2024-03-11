@@ -1,0 +1,39 @@
+= World of Jars Login Feature Documentation
+
+== Introduction
+
+This document outlines the login and registration functionality of the World of Jars inventory management system, including the HTML structure and JavaScript functionality.
+
+== HTML Overview
+
+. *Navigation Bar*: Provides links to Home, About, and Inventory. It is responsive and highlights the active page.
+. *Login and Registration Forms*: These forms are part of a single section for user authentication. The login form is initially visible, with an option to switch to the registration form.
+
+== JavaScript Behavior
+
+=== Dependencies
+
+* jQuery: For AJAX requests and DOM manipulation.
+* Bootstrap: For responsive design components.
+* Toastr: For displaying notifications and feedback.
+
+=== Key Functionalities
+
+. *Automatic Redirection*: Users with an `authToken` in local storage are automatically redirected to the inventory section.
+. *Form Animation*: Allows toggling between the login and registration forms, enhancing the user experience.
+. *Login Process*:
+** Captures user credentials.
+** Sends credentials to the server via AJAX.
+** On successful authentication, stores the `authToken` and redirects to the inventory page.
+** Displays error messages for issues like server errors or incorrect credentials.
+. *Registration Process*:
+** Captures new user credentials.
+** Registers the user via an AJAX request.
+** On success, redirects to the home page and suggests logging in.
+
+
+== Security Aspects
+
+Discusses the use of HTTPS for AJAX requests and the storage of `authToken` in local storage, noting the practicality and inherent security considerations.
+
+
